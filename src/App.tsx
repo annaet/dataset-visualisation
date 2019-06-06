@@ -33,7 +33,9 @@ export default class App extends Component<{}, AppState> {
       <div>
         <h1>Datasets Visualisation</h1>
 
-        <Dataset />
+        {data.map((set, i) => (
+          <Dataset data={ set } key={ i } />
+        ))}
       </div>
     )
   }
