@@ -24,3 +24,17 @@ Dataset 3 contains:
 ### Dataset
 
 - Format and display `created_at` time
+- Restructured to class syntax
+- Add pie charts for keys
+
+
+### Questions
+
+- TS `type` vs `interface`
+- When to use stateless functional components, limited without state and lifecycle hooks
+
+
+### Todos
+
+- Add SCSS
+- Styling

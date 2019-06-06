@@ -27,7 +27,6 @@ export default class App extends Component<{}, AppState> {
 
   render() {
     const { data } = this.state;
-    console.log(data);
 
     return (
       <div>

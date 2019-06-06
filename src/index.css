@@ -12,3 +12,28 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+.flex { display: flex !important; }
+
+.flex-ac { align-items: center; }
+.flex-afs { align-items: flex-start; }
+.flex-afe { align-items: flex-end; }
+.flex-ast { align-items: stretch; }
+
+.flex-jc { justify-content: center; }
+.flex-jsb { justify-content: space-between; }
+.flex-jse { justify-content: space-evenly; }
+.flex-jfe { justify-content: flex-end; }
+.flex-jfs { justify-content: flex-start; }
+
+.flex-ass { align-self: flex-start; }
+.flex-ase { align-self: flex-end; }
+
+.flex-col { flex-direction: column; }
+.flex-col-rev { flex-direction: column-reverse; }
+.flex-row { flex-direction: row; }
+.flex-row-rev { flex-direction: row-reverse; }
+
+.flex-wrap { flex-wrap: wrap; }
+
+.flex-grow { flex: 1 1 auto; }
