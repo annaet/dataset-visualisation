@@ -13,6 +13,9 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.body {
   padding: 1rem;
 }
 
@@ -27,4 +30,39 @@ code {
 
 .clickable {
   cursor: pointer;
+}
+
+.header {
+  background: white;
+  box-shadow: 0px 1px 10px 1px rgba(69, 65, 78, .06);
+  padding: 0 2rem;
+
+  h1 {
+    margin: 0 2rem 0 0;
+    padding: 1rem 2rem 1rem 0;
+    border-right: 1px solid #f1f1f1;
+  }
+
+  .tab {
+    margin: 0 2rem 0 0;
+    cursor: pointer;
+
+    &.active {
+      color: #045dbf;
+    }
+
+    &:hover {
+      color: rgba(#045dbf, 0.6);
+    }
+  }
+}
+
+.side-tab {
+  &.active {
+    color: #045dbf;
+  }
+
+  &:hover {
+    color: rgba(#045dbf, 0.6);
+  }
 }

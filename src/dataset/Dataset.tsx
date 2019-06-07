@@ -188,6 +188,8 @@ export default class Dataset extends Component<any, DatasetState> {
                 </ResponsiveContainer>
               </div>
             ))}
+
+            {keys.length === 0 ? <p>No keys available.</p> : null}
           </div>
         </div>
       </div>

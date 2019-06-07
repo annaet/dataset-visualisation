@@ -10,7 +10,8 @@ import Categories from './categories/Categories';
 
 interface AppState {
   data: Array<DatasetDef>,
-  selectedTab: number
+  selectedTab: number,
+  activePage: number
 };
 
 export default class App extends Component<{}, AppState> {
@@ -19,7 +20,8 @@ export default class App extends Component<{}, AppState> {
 
     this.state = {
       data: [],
-      selectedTab: 0
+      selectedTab: 0,
+      activePage: 0
     };
   }
 
@@ -31,7 +33,7 @@ export default class App extends Component<{}, AppState> {
   }
 
   render() {
-    const { data, selectedTab } = this.state;
+    const { data, selectedTab, activePage } = this.state;
 
     let category;
     if (data.length) {
@@ -60,35 +62,41 @@ export default class App extends Component<{}, AppState> {
       });
     });
 
-
     return (
       <div>
-        <h1>Datasets Visualisation</h1>
-
-        <div className="panel mb0">
-          <h2 className="no-margin">Categories</h2>
-
-          {category ? (
-            <Categories data={ categoriesStats }></Categories>
-          ) : null}
+        <div className="header flex flex-ac">
+          <h1>Datasets Visualisation</h1>
+          <span className={'tab' + (activePage === 0 ? ' active' : '')} onClick={ () => this.setState({activePage: 0}) }>Categories</span>
+          <span className={'tab' + (activePage === 1 ? ' active' : '')} onClick={ () => this.setState({activePage: 1}) }>Keys</span>
         </div>
 
-        <div className="flex">
-          <div className="flex flex-col">
-            {data.map((set, i) => (
-              <div className="panel clickable" key={ i } onClick={ () => { this.setState({ selectedTab: i })} }>
-                {set.name}
+        <div className="body">
+          {activePage === 0 ? (
+            <div className="panel mb0">
+              <h2 className="no-margin">Categories</h2>
+
+              {category ? (
+                <Categories data={ categoriesStats }></Categories>
+              ) : null}
+            </div>
+          ) : (
+            <div className="flex">
+              <div className="flex flex-col">
+                {data.map((set, i) => (
+                  <div className={'side-tab panel clickable'  + (selectedTab === i ? ' active' : '')} key={ i } onClick={ () => { this.setState({ selectedTab: i })} }>
+                    {set.name}
+                  </div>
+                ))}
               </div>
-            ))}
-          </div>
 
-          <div className="flex-grow ml1">
-            {data.length ? (
-              <Dataset data={ data[selectedTab] } />
-            ) : null}
-          </div>
+              <div className="flex-grow ml1">
+                {data.length ? (
+                  <Dataset data={ data[selectedTab] } />
+                ) : null}
+              </div>
+            </div>
+          )}
         </div>
-
       </div>
     )
   }
