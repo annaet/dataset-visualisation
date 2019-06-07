@@ -1,18 +1,3 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  padding: 1rem;
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
-}
-
 .flex { display: flex !important; }
 
 .flex-ac { align-items: center; }
@@ -37,3 +22,5 @@ code {
 .flex-wrap { flex-wrap: wrap; }
 
 .flex-grow { flex: 1 1 auto; }
+
+.flex-centred { @extend .flex, .flex-ac, .flex-jc; }

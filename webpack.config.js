@@ -30,6 +30,15 @@ const rules = [
   },
   {
     exclude: /(nothing)/, // NOTE: To work around TypeScript issue
+    test: /\.scss$/,
+    use: [
+        "style-loader", // creates style nodes from JS strings
+        "css-loader", // translates CSS into CommonJS
+        "sass-loader" // compiles Sass to CSS, using Node Sass by default
+    ]
+  },
+  {
+    exclude: /(nothing)/, // NOTE: To work around TypeScript issue
     test: /\.css$/,
     use: [
       'style-loader',

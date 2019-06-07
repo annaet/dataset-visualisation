@@ -1,0 +1,96 @@
+// Set margin andf padding helper classes between 1rem and 5rem
+@for $i from 0 through 6 {
+  .py#{$i} {
+    padding-top: #{$i}rem !important;
+    padding-bottom: #{$i}rem !important;
+  }
+
+  .px#{$i} {
+    padding-right: #{$i}rem !important;
+    padding-left: #{$i}rem !important;
+  }
+
+  .pt#{$i} {
+    padding-top: #{$i}rem !important;
+  }
+
+  .pb#{$i} {
+    padding-bottom: #{$i}rem !important;
+  }
+
+  .pr#{$i} {
+    padding-right: #{$i}rem !important;
+  }
+
+  .my#{$i} {
+    margin-top: #{$i}rem !important;
+    margin-bottom: #{$i}rem !important;
+  }
+
+  .mx#{$i} {
+    margin-right: #{$i}rem !important;
+    margin-left: #{$i}rem !important;
+  }
+
+  .mt#{$i} {
+    margin-top: #{$i}rem !important;
+  }
+
+  .mb#{$i} {
+    margin-bottom: #{$i}rem !important;
+  }
+
+  .mr#{$i} {
+    margin-right: #{$i}rem !important;
+  }
+
+  .ml#{$i} {
+    margin-left: #{$i}rem !important;
+  }
+}
+
+.t-px1 {
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.t-py1 {
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.t-mr1 {
+  margin-right: 5px;
+}
+
+.t-mr2 {
+  margin-right: 10px;
+}
+
+.t-ml1 {
+  margin-left: 5px;
+}
+
+.t-ml2 {
+  margin-left: 10px;
+}
+
+.t-mt1 {
+  margin-top: 5px;
+}
+
+.t-mb1 {
+  margin-bottom: 5px;
+}
+
+.t-mb2 {
+  margin-bottom: 10px;
+}
+
+.no-padding {
+  padding: 0 !important;
+}
+
+.no-margin {
+  margin: 0 !important;
+}

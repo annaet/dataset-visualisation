@@ -1,0 +1,17 @@
+.statistic {
+  margin: 1rem 0 0 0;
+  border-left: 5px solid rgba(#045dbf, 0.5);
+  padding-left: 1rem;
+
+  .label {
+    color: #575962;
+    text-transform: uppercase;
+    letter-spacing: 0.08rem;
+    margin-top: 5px;
+  }
+
+  .value {
+    color: #045dbf;
+    font-size: 1.4em;
+  }
+}

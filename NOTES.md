@@ -26,6 +26,7 @@ Dataset 3 contains:
 - Format and display `created_at` time
 - Restructured to class syntax
 - Add pie charts for keys
+- Add statistics
 
 
 ### Questions
@@ -36,5 +37,5 @@ Dataset 3 contains:
 
 ### Todos
 
-- Add SCSS
-- Styling
+- Overall comparison between datasets
+- Categories
