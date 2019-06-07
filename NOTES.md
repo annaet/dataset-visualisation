@@ -12,6 +12,13 @@ Dataset 3 contains:
   - Categories: `Custom`, `Address`, `Gender`
   - Keys: None
 
+Categories:
+
+- Best Representation
+  - Stats
+    - `distinct`
+    - `most_common`
+    - `null_fraction`
 
 ### App
 
@@ -19,6 +26,11 @@ Dataset 3 contains:
 - Initialise state
 - Import data on lifecycle hook
 - Pass data through to Dataset component
+
+
+### Categories
+
+- Comparison bar chart segmented into datasets to compare `null` and `distinct` counts
 
 
 ### Dataset
