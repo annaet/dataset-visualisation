@@ -31,6 +31,7 @@ Categories:
 ### Categories
 
 - Comparison bar chart segmented into datasets to compare `null` and `distinct` counts
+- Tree chart for most common values
 
 
 ### Dataset
@@ -48,6 +49,3 @@ Categories:
 
 
 ### Todos
-
-- Overall comparison between datasets
-- Categories
