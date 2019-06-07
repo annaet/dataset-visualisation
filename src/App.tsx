@@ -117,10 +117,13 @@ export default class App extends Component<{}, AppState> {
               <div className="panel mb0">
                 <h2 className="no-margin">Most Common</h2>
 
-                <div className="grid grid-w-30">
+                <div className="grid grid-w-28 grid-cg-5 grid-rg-5 mt1">
                   {commonStats.map((stat, i) => (
                     <div key={ i }>
-                      <h4>{stat.name} <span className="text-secondary">({stat.dataset})</span></h4>
+                      <div className="flex flex-jsb flex-ac mb1">
+                        <h4 className="no-margin">{stat.name}</h4>
+                        <div className="text-secondary">{stat.dataset}</div>
+                      </div>
                       <TreeChart data={ stat.children } colour={ colours[i] }></TreeChart>
                     </div>
                   ))}
