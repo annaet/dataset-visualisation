@@ -22,13 +22,12 @@ export default class App extends Component<{}, AppState> {
     this.state = {
       data: [],
       selectedTab: 0,
-      activePage: 0
+      activePage: 1
     };
   }
 
   componentDidMount() {
     getDatasets().then(data => {
-      console.log(data);
       this.setState({ data });
     })
   }
@@ -100,8 +99,7 @@ export default class App extends Component<{}, AppState> {
         <div className="header flex flex-ac">
           <h1>Datasets Visualisation</h1>
           <span className={'tab' + (activePage === 0 ? ' active' : '')} onClick={ () => this.setState({activePage: 0}) }>Categories</span>
-          <span className={'tab' + (activePage === 1 ? ' active' : '')} onClick={ () => this.setState({activePage: 1}) }>Keys</span>
-          <span className={'tab' + (activePage === 2 ? ' active' : '')} onClick={ () => this.setState({activePage: 2}) }>Datasets</span>
+          <span className={'tab' + (activePage === 1 ? ' active' : '')} onClick={ () => this.setState({activePage: 1}) }>Datasets</span>
         </div>
 
         <div className="body">
@@ -147,14 +145,6 @@ export default class App extends Component<{}, AppState> {
                 {data.length ? (
                   <Dataset data={ data[selectedTab] } />
                 ) : null}
-              </div>
-            </div>
-          ) : null}
-
-          {activePage === 2 ? (
-            <div>
-              <div className="panel mb0">
-                <h2 className="no-margin">Dataset</h2>
               </div>
             </div>
           ) : null}

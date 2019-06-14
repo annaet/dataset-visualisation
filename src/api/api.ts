@@ -779,19 +779,17 @@ export const updateDataset = (id: string, update: DatasetUpdate): Promise<Datase
   const dataset = datasets.find(({ dataset_id }) => dataset_id === id);
 
   if (!dataset) {
-    Promise.reject('Dataset not found');
-    return;
+    return Promise.reject('Dataset not found');
   }
 
   const validName = /^[a-zA-Z0-9]{3,20}$/g.test(update.name || '');
 
   if (!validName) {
-    Promise.reject('Dataset name may only contain alphanumeric characters');
-    return;
+    return Promise.reject('Dataset name may only contain alphanumeric characters');
   }
 
   dataset.name = update.name;
   dataset.updated_at = new Date().toISOString();
 
-  Promise.resolve(dataset);
+  return Promise.resolve(dataset);
 }

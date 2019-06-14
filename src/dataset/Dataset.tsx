@@ -3,6 +3,7 @@ import moment from 'moment';
 import { ResponsiveContainer, Cell, PieChart, Pie, Sector } from 'recharts';
 
 import { Dataset as DatasetDef } from '../api/api-definition';
+import { updateDataset } from '../api/api';
 import Statistic from '../statistic/Statistic'
 import { getHeapStatistics } from 'v8';
 
@@ -11,19 +12,24 @@ interface DatasetProps {
 };
 
 interface DatasetState {
+  data: Array<any>,
   activeIndexes: Array<number>,
   datasetId: number
 };
 
-export default class Dataset extends Component<any, DatasetState> {
+export default class Dataset extends Component<any, any> {
   constructor(props) {
     super(props);
 
     this.onPieEnter = this.onPieEnter.bind(this);
+    this.updateDatasetName = this.updateDatasetName.bind(this);
 
     this.state = {
+      data: props.data,
       activeIndexes: [],
-      datasetId: 0
+      datasetId: 0,
+      error: null,
+      message: null
     }
   }
 
@@ -122,9 +128,31 @@ export default class Dataset extends Component<any, DatasetState> {
     });
   }
 
+  updateDatasetName(name) {
+    const { data } = this.state;
+
+    // Code to force error:
+    // updateDataset('1', {name: name}).then(result => {
+    updateDataset(data.dataset_id, {name: name}).then(result => {
+      this.setState({
+        data: result,
+        message: 'Dataset updated successfully'
+      });
+
+      setTimeout(() => {
+        this.setState({message: null});
+      }, 2000);
+    }).catch(e => {
+      this.setState({error: e});
+
+      setTimeout(() => {
+        this.setState({error: null});
+      }, 2000);
+    })
+  }
+
   render() {
-    const { activeIndexes } = this.state;
-    const { data } = this.props;
+    const { data, activeIndexes, error, message } = this.state;
 
     const rowCount:number = parseInt(data.stats.row_count, 10);
     const formattedRowCount = Math.floor(rowCount / 1000) + 'K';
@@ -155,9 +183,8 @@ export default class Dataset extends Component<any, DatasetState> {
         <div className="panel">
           <h2 className="no-margin">Dataset</h2>
 
-
           <div className="grid grid-w-48">
-            <Statistic label="Name" value={data.name}></Statistic>
+            <Statistic label="Name" value={data.name} editable={ true } callback={ this.updateDatasetName }></Statistic>
             <Statistic label="ID" value={data.dataset_id}></Statistic>
             <Statistic label="Rows" value={ data.stats.row_count }></Statistic>
             <Statistic label="Created At" value={ moment(data.created_at).format('MMMM Do YYYY') }></Statistic>
@@ -192,6 +219,9 @@ export default class Dataset extends Component<any, DatasetState> {
             {keys.length === 0 ? <p>No keys available.</p> : null}
           </div>
         </div>
+
+        {error ? <div className="message error" onClick={ () => this.setState({ error: null }) }>{ error }</div> : null}
+        {message ? <div className="message" onClick={ () => this.setState({ message: null }) }>{ message }</div> : null}
       </div>
     );
   }

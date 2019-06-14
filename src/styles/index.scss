@@ -61,3 +61,31 @@ body {
   color: white;
   height: 400px;
 }
+
+button {
+  background: rgba(#045dbf, 0.8);
+  border: none;
+  color: white;
+  padding: 4px 10px;
+  cursor: pointer;
+
+  &:hover {
+    background: rgba(#045dbf, 1);
+  }
+}
+
+.message {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  padding: 20px;
+  background: #237700;
+  width: 100%;
+  z-index: 100;
+  color: white;
+  text-align: center;
+}
+
+.error {
+  background: #9a0000;
+}
