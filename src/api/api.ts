@@ -1,6 +1,7 @@
 import {
   Category,
   Dataset,
+  DatasetUpdate,
 } from './api-definition';
 
 const addressCategory: Category = {
@@ -621,6 +622,7 @@ const dataset1: Dataset = {
   dataset_id: '537867f1-6dc2-41fa-8950-eec0ff0f4061',
   name: 'dataset1',
   created_at: '2019-05-22T10:51:41.272178Z',
+  updated_at: '2019-05-22T10:51:41.272178Z',
   stats: {
     row_count: '875693',
     keys: [
@@ -669,9 +671,10 @@ const dataset1: Dataset = {
 };
 
 const dataset2: Dataset = {
-  dataset_id: '537867f1-6dc2-41fa-8950-eec0ff0f4062',
+  dataset_id: '2edc4cff-de7e-4a6f-9c72-2ff1f9506cdb',
   name: 'dataset2',
   created_at: '2019-05-22T10:51:41.272178Z',
+  updated_at: '2019-05-22T10:51:41.272178Z',
   stats: {
     row_count: '162362',
     keys: [
@@ -701,9 +704,10 @@ const dataset2: Dataset = {
 };
 
 const dataset3: Dataset = {
-  dataset_id: '537867f1-6dc2-41fa-8950-eec0ff0f4063',
+  dataset_id: '7d463167-4ffb-48cf-8c00-e6da7946fd8e',
   name: 'dataset3',
   created_at: '2019-05-22T10:51:41.272178Z',
+  updated_at: '2019-05-22T10:51:41.272178Z',
   stats: {
     row_count: '74067',
     keys: [],
@@ -758,6 +762,36 @@ const dataset3: Dataset = {
   },
 };
 
-export const getDatasets = Promise.resolve([dataset1, dataset2, dataset3]);
+const datasets = [dataset1, dataset2, dataset3];
 
-export default getDatasets;
+/**
+ * Returns a list of all available datasets.
+ */
+export const getDatasets = () => Promise.resolve(datasets);
+
+/**
+ * Updates a dataset.
+ *
+ * @param id ID of the dataset.
+ * @param update New values for the dataset.
+ */
+export const updateDataset = (id: string, update: DatasetUpdate): Promise<Dataset> => {
+  const dataset = datasets.find(({ dataset_id }) => dataset_id === id);
+
+  if (!dataset) {
+    Promise.reject('Dataset not found');
+    return;
+  }
+
+  const validName = /^[a-zA-Z0-9]{3,20}$/g.test(update.name || '');
+
+  if (!validName) {
+    Promise.reject('Dataset name may only contain alphanumeric characters');
+    return;
+  }
+
+  dataset.name = update.name;
+  dataset.updated_at = new Date().toISOString();
+
+  Promise.resolve(dataset);
+}

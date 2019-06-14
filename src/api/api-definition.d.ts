@@ -15,12 +15,25 @@ export interface Dataset {
      * CreatedAt is the time when the Dataset was created.
      */
     created_at: string; // date-time
-
+    /**
+     * UpdatedAt is the time when the Dataset was last updated.
+     */
+    updated_at: string; // date-time
     /**
      * Stats contains statistical information about the Dataset.
      */
     stats: DatasetDescription;
 }
+
+/**
+ * DatasetUpdate lists the fields to be changed when updating a dataset.
+ */
+export interface DatasetUpdate {
+    /**
+     * Name is the name of the Dataset. Must only contain alphanumeric characters.
+     */
+    name: string;
+  }
 
 /**
  * DatasetDescription is statistical information about a Dataset
