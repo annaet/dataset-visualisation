@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import { ResponsiveContainer, BarChart, CartesianGrid, XAxis, YAxis, Legend, Bar, Tooltip } from 'recharts';
 
 import { Dataset as DatasetDef } from './api/api-definition';
-import getDatasets from './api/api';
+import { getDatasets } from './api/api';
 import Dataset from './dataset/Dataset';
 import Categories from './categories/Categories';
 import TreeChart from './categories/TreeChart';
@@ -27,7 +27,7 @@ export default class App extends Component<{}, AppState> {
   }
 
   componentDidMount() {
-    getDatasets.then(data => {
+    getDatasets().then(data => {
       console.log(data);
       this.setState({ data });
     })
@@ -101,6 +101,7 @@ export default class App extends Component<{}, AppState> {
           <h1>Datasets Visualisation</h1>
           <span className={'tab' + (activePage === 0 ? ' active' : '')} onClick={ () => this.setState({activePage: 0}) }>Categories</span>
           <span className={'tab' + (activePage === 1 ? ' active' : '')} onClick={ () => this.setState({activePage: 1}) }>Keys</span>
+          <span className={'tab' + (activePage === 2 ? ' active' : '')} onClick={ () => this.setState({activePage: 2}) }>Datasets</span>
         </div>
 
         <div className="body">
@@ -130,7 +131,9 @@ export default class App extends Component<{}, AppState> {
                 </div>
               </div>
             </div>
-          ) : (
+          ) : null}
+
+          {activePage === 1 ? (
             <div className="flex">
               <div className="flex flex-col">
                 {data.map((set, i) => (
@@ -146,7 +149,15 @@ export default class App extends Component<{}, AppState> {
                 ) : null}
               </div>
             </div>
-          )}
+          ) : null}
+
+          {activePage === 2 ? (
+            <div>
+              <div className="panel mb0">
+                <h2 className="no-margin">Dataset</h2>
+              </div>
+            </div>
+          ) : null}
         </div>
       </div>
     )
